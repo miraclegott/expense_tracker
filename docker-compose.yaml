@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:latest
+    container_name: expense_tracker_db
+    environment:
+      POSTGRES_USER: ${DB_USER:-expense_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secure_password}
+      POSTGRES_DB: ${DB_NAME:-expense_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
