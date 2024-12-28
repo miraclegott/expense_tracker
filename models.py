@@ -24,5 +24,3 @@ class Expense(db.Model):
     currency_id = db.Column(db.Integer, db.ForeignKey('currencies.id'), nullable=True)
     currency = db.relationship('Currency')
 
-with app.app_context():
-    db.create_all()

@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from data import users, categories, records, get_next_id
 from flask_smorest import Api
 from flask_migrate import Migrate
 from models import db
@@ -32,8 +31,10 @@ def create_app():
     api.register_blueprint(expense_bp)
     api.register_blueprint(currency_bp)
 
-    return app
+    with app.app_context():
+        db.create_all()
 
+    return app
 
 if __name__ == "__main__":
     app = create_app()
