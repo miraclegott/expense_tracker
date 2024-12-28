@@ -23,3 +23,6 @@ class Expense(db.Model):
     amount = db.Column(db.Float, nullable=False)
     currency_id = db.Column(db.Integer, db.ForeignKey('currencies.id'), nullable=True)
     currency = db.relationship('Currency')
+
+with app.app_context():
+    db.create_all()
